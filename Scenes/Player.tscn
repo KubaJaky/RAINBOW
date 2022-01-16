@@ -1,8 +1,52 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=40 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Character/Body.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
 [ext_resource path="res://Sprites/CrystalStar.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Character/Wand.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/Character/Cloud.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/Character/Eyes.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Character/Hat.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Triangle.png" type="Texture" id=8]
+
+[sub_resource type="Curve" id=26]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 4.90909 ), 0.0, -3182.96, 0, 0, Vector2( 1, 1 ), -1043.68, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=27]
+curve = SubResource( 26 )
+
+[sub_resource type="Gradient" id=28]
+offsets = PoolRealArray( 0.322981, 1 )
+colors = PoolColorArray( 0.605469, 0.81044, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=29]
+gradient = SubResource( 28 )
+
+[sub_resource type="Curve" id=30]
+_data = [ Vector2( 0, 0.815909 ), 0.0, 0.389006, 0, 0, Vector2( 1, 0.325 ), -0.367184, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=31]
+curve = SubResource( 30 )
+
+[sub_resource type="ParticlesMaterial" id=25]
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 49.02
+angular_velocity = 167.44
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 45.0
+angle_random = 1.0
+angle_curve = SubResource( 27 )
+scale = 0.05
+scale_curve = SubResource( 31 )
+color_ramp = SubResource( 29 )
+hue_variation = 0.05
+hue_variation_random = 1.0
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 32, 32 )
@@ -204,6 +248,268 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="Animation" id=21]
+resource_name = "Idle"
+length = 1.5
+loop = true
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Body:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0.5, -0.25, 0, 0.4, -5.57899e-05, 0.52, -0.35, -0.00392348, 0.35, -0.00291973, 0.5, -0.4, 0.0021075, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.75, 1.5 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Body:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0.5, -0.25, 0, 0.5, -0.00266489, 0.461667, -0.25, 0, 0.25, 0, 0.5, -0.4, -0.00187746, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.75, 1.5 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Hat:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Hat:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.5, 0.0477115, 0.953408, -0.45, 0.00628948, 0.45, -0.0167059, 0, -0.4, 0.0791593, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.75, 1.5 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Cloud:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 1.46378 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("Cloud:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( -0.0207803, -0.25, 0, 0.03, 0.125494, 0.493969, -0.25, 0, 0.4, -0.203715, -0.501918, -0.3, 0.29949, 0.4, 0.0636072, 0, -0.1, -0.355316, 0.25, 0 ),
+"times": PoolRealArray( 0.07, 0.4, 1, 1.5 )
+}
+
+[sub_resource type="Animation" id=22]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Body:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0.5, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Body:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0.5, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Hat:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Hat:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("Cloud:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("Cloud:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=23]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Wand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../Wand:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../Wand:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("../Wand:position:y")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Pew:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "Shoot"
+length = 0.8
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("../Wand:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.2, 7.3198, 25, -0.25, 0, 0.2, -1.15704, 0, -0.3, 4.46229, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3, 0.8 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../Wand:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.2, 6.65001, 15, -0.25, 0, 0.2, -0.847374, 0, -0.2, 5.62513, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3, 0.8 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../Wand:position:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -10.9135, -0.3, 0.651908, 0.2, 0.646515, 0, -0.2, 0.00473452, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3, 0.8 )
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("..")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "shoot"
+}, {
+"args": [  ],
+"method": "shoot_able"
+} ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Pew:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("../Pew")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "restart"
+} ]
+}
+
 [sub_resource type="Curve" id=16]
 min_value = -360.0
 max_value = 360.0
@@ -235,18 +541,46 @@ scale_curve = SubResource( 19 )
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
-[node name="Icon" type="Sprite" parent="."]
+[node name="Wand" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+
+[node name="Body" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 1 )
 
+[node name="Eyes" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+
+[node name="Hat" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 7 )
+
+[node name="Cloud" type="Sprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 5 )
+
+[node name="Pew" type="Particles2D" parent="."]
+position = Vector2( 60, 8 )
+emitting = false
+amount = 20
+lifetime = 0.6
+speed_scale = 2.0
+explosiveness = 0.65
+process_material = SubResource( 25 )
+texture = ExtResource( 8 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 1.4, 1.4 )
+zoom = Vector2( 0.8, 0.8 )
 
 [node name="Movement" type="AnimationPlayer" parent="."]
-playback_speed = 2.0
+playback_speed = 3.0
 anims/0Down = SubResource( 14 )
 anims/1Down = SubResource( 12 )
 anims/1Up = SubResource( 9 )
@@ -262,11 +596,24 @@ anims/6Up = SubResource( 15 )
 anims/Move_up = SubResource( 2 )
 anims/RESET = SubResource( 3 )
 
+[node name="Idle" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 21 )
+anims/RESET = SubResource( 22 )
+
+[node name="Action" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Movement")
+playback_speed = 2.0
+anims/RESET = SubResource( 23 )
+anims/Shoot = SubResource( 24 )
+
 [node name="Stars" type="Particles2D" parent="."]
-position = Vector2( -35, 29 )
+position = Vector2( -43, 29 )
 rotation = 0.69115
 amount = 10
 lifetime = 0.75
 speed_scale = 0.75
 process_material = SubResource( 20 )
 texture = ExtResource( 3 )
+
+[node name="aim" type="Node2D" parent="."]
+position = Vector2( 70, 8 )

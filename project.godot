@@ -14,6 +14,15 @@ config/name="Rainbow"
 run/main_scene="res://Scenes/World.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+window/size/resizable=false
+window/size/fullscreen=true
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
 [input]
 
 up={
@@ -24,6 +33,11 @@ up={
 down={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":83,"unicode":0,"echo":false,"script":null)
+ ]
+}
+shoot={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":69,"unicode":0,"echo":false,"script":null)
  ]
 }
 

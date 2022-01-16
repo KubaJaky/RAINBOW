@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=21 format=2]
 
-[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/ManaRing/ManaUnder.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/BLUESQ.jpg" type="Texture" id=2]
 [ext_resource path="res://Sprites/GREENSQ.jpg" type="Texture" id=3]
 [ext_resource path="res://Sprites/YELLOWSQ.jpg" type="Texture" id=4]
@@ -11,6 +11,11 @@
 [ext_resource path="res://Sprites/PINKSQ.jpg" type="Texture" id=9]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/Spawner0.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Sprites/speedline.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/ManaRing/ManaRing.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/ManaRing/ManaProgress.png" type="Texture" id=14]
+[ext_resource path="res://Fonts/Mainlux-Light.otf" type="DynamicFontData" id=15]
+[ext_resource path="res://Scenes/UI.gd" type="Script" id=16]
 
 [sub_resource type="TileSet" id=2]
 0/name = "SQUARE.jpg 0"
@@ -126,12 +131,38 @@
 7/shapes = [  ]
 7/z_index = 0
 
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 2
+emission_box_extents = Vector3( 200, 2500, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+gravity = Vector3( -200, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 100.0
+linear_accel_random = 1.0
+scale = 0.8
+scale_random = 1.0
+
+[sub_resource type="DynamicFont" id=4]
+size = 50
+outline_size = 1
+outline_color = Color( 0.796078, 0.67451, 0.211765, 1 )
+font_data = ExtResource( 15 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 50
+outline_size = 1
+outline_color = Color( 0.796078, 0.67451, 0.211765, 1 )
+font_data = ExtResource( 15 )
+
 [node name="World" type="Node2D"]
 
 [node name="Icon" type="Sprite" parent="."]
+modulate = Color( 0.784314, 0.862745, 1, 1 )
 position = Vector2( 4, -4 )
 scale = Vector2( 50, 50 )
-texture = ExtResource( 1 )
+texture = ExtResource( 8 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
@@ -141,4 +172,78 @@ tile_data = PoolIntArray( -524301, 7, 0, -524300, 7, 0, -524299, 7, 0, -524298, 
 [node name="Player" parent="." instance=ExtResource( 10 )]
 
 [node name="Spawner0" parent="." instance=ExtResource( 11 )]
-position = Vector2( 838, -512 )
+position = Vector2( 840, -512 )
+
+[node name="Spawner1" parent="." instance=ExtResource( 11 )]
+position = Vector2( 838, -384 )
+
+[node name="Spawner2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 838, -256 )
+
+[node name="Spawner3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 838, -128 )
+
+[node name="Spawner4" parent="." instance=ExtResource( 11 )]
+position = Vector2( 838, 0 )
+
+[node name="Spawner5" parent="." instance=ExtResource( 11 )]
+position = Vector2( 838, 128 )
+
+[node name="Spawner6" parent="." instance=ExtResource( 11 )]
+position = Vector2( 838, 256 )
+
+[node name="SpeedLines" type="Particles2D" parent="."]
+position = Vector2( 760, -75 )
+scale = Vector2( 1, 0.3 )
+amount = 5
+lifetime = 8.0
+speed_scale = 7.0
+process_material = SubResource( 3 )
+texture = ExtResource( 12 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 16 )
+
+[node name="ManaRingProgress" type="TextureProgress" parent="CanvasLayer"]
+margin_left = 1686.0
+margin_top = 34.0
+margin_right = 1890.0
+margin_bottom = 243.0
+value = 100.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 14 )
+fill_mode = 3
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ManaRing" type="Sprite" parent="CanvasLayer/ManaRingProgress"]
+position = Vector2( 103, 104 )
+scale = Vector2( 0.402672, 0.406439 )
+texture = ExtResource( 13 )
+
+[node name="Mana" type="Label" parent="CanvasLayer/ManaRingProgress"]
+margin_left = 40.0
+margin_top = 60.0
+margin_right = 194.0
+margin_bottom = 120.0
+custom_colors/font_color = Color( 0.176471, 0.611765, 1, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "Mana"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ManaCount" type="Label" parent="CanvasLayer/ManaRingProgress"]
+margin_left = 30.0
+margin_top = 104.0
+margin_right = 184.0
+margin_bottom = 164.0
+custom_colors/font_color = Color( 0.176471, 0.611765, 1, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "100%"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
