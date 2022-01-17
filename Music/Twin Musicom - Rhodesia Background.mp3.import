@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Twin Musicom - Rhodesia Background.mp3-2c6c03e6931aa5a44a42c41ff77cc204.mp3str"
+
+[deps]
+
+source_file="res://Music/Twin Musicom - Rhodesia Background.mp3"
+dest_files=[ "res://.import/Twin Musicom - Rhodesia Background.mp3-2c6c03e6931aa5a44a42c41ff77cc204.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

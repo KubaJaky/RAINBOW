@@ -1,9 +1,11 @@
 extends Node2D
 
 onready var cooldown = $CD
+onready var player = get_parent().get_node("Player")
 
 var obstacle
 var cloud = preload("Obstacle1.tscn")
+var raincloud = preload("Obstacle2.tscn")
 
 func _ready():
 	# Random Cooldown
@@ -12,9 +14,12 @@ func _ready():
 	
 func spawn():
 	# rng for the obstacle spawned
-	obstacle = int(rand_range(0,4))
-	if obstacle == 1:
+	obstacle = int(rand_range(0,8))
+	if obstacle > 1 and obstacle < 4:
 		var spawned = cloud.instance()
+		self.add_child(spawned)
+	elif obstacle > 3 and obstacle < 5:
+		var spawned = raincloud.instance()
 		self.add_child(spawned)
 	cooldown.start()
 	
@@ -24,4 +29,5 @@ func spawn():
 
 
 func _on_CD_timeout():
-	spawn()
+	if !player.dead:
+		spawn()

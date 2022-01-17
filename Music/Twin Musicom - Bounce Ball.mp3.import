@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Twin Musicom - Bounce Ball.mp3-943a56cfe865115835edb6739e44b437.mp3str"
+
+[deps]
+
+source_file="res://Music/Twin Musicom - Bounce Ball.mp3"
+dest_files=[ "res://.import/Twin Musicom - Bounce Ball.mp3-943a56cfe865115835edb6739e44b437.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

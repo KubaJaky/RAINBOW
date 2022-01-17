@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Sprites/Character/Body.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
@@ -8,6 +8,14 @@
 [ext_resource path="res://Sprites/Character/Eyes.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Character/Hat.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Triangle.png" type="Texture" id=8]
+[ext_resource path="res://Sounds/Hit/Hit3.wav" type="AudioStream" id=9]
+[ext_resource path="res://Sounds/Hit/Hit4.wav" type="AudioStream" id=10]
+[ext_resource path="res://Sounds/Hit/Hit1.wav" type="AudioStream" id=11]
+[ext_resource path="res://Sounds/Hit/Hit2.wav" type="AudioStream" id=12]
+[ext_resource path="res://Sounds/Shoot/Shoot2.wav" type="AudioStream" id=13]
+[ext_resource path="res://Sounds/Shoot/Shoot3.wav" type="AudioStream" id=14]
+[ext_resource path="res://Sounds/Shoot/Shoot1.wav" type="AudioStream" id=15]
+[ext_resource path="res://Sounds/Shoot/Shoot4.wav" type="AudioStream" id=16]
 
 [sub_resource type="Curve" id=26]
 min_value = -360.0
@@ -19,7 +27,7 @@ curve = SubResource( 26 )
 
 [sub_resource type="Gradient" id=28]
 offsets = PoolRealArray( 0.322981, 1 )
-colors = PoolColorArray( 0.605469, 0.81044, 1, 1, 1, 1, 1, 0 )
+colors = PoolColorArray( 0.603922, 0.811765, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture" id=29]
 gradient = SubResource( 28 )
@@ -45,11 +53,11 @@ angle_curve = SubResource( 27 )
 scale = 0.05
 scale_curve = SubResource( 31 )
 color_ramp = SubResource( 29 )
-hue_variation = 0.05
+hue_variation = 0.03
 hue_variation_random = 1.0
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 32, 32 )
+[sub_resource type="CircleShape2D" id=36]
+radius = 23.0217
 
 [sub_resource type="Animation" id=14]
 resource_name = "0Down"
@@ -376,6 +384,142 @@ tracks/5/keys = {
 "times": PoolRealArray( 0 )
 }
 
+[sub_resource type="Animation" id=32]
+resource_name = "Death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Camera2D:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 25, 0 ), Vector2( 15, 20 ), Vector2( -20, -5 ), Vector2( -5, 10 ), Vector2( 5, -5 ), Vector2( 0, 5 ), Vector2( 5, 0 ), Vector2( 2, 2 ), Vector2( -1, -2 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("../Body:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 0.5, -0.25, 0, 0.1, 0.00806487, 0.393572, -0.25, 0, 0.6, -0.112867, 0.5, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 1 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("../Body:position:x")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.1, 1.09213, 4.46649, -0.25, 0, 0.915251, 1.03822, 0.20668, -0.277525, -10.233, 0.201782, 9.44485, -0.0388096, -0.329796, -6.7294, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.3, 1.1, 2 )
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Stars:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "bezier"
+tracks/4/path = NodePath("../Wand:position:x")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.2, 0.52873, 4.58532, -0.25, 0, 0.615251, 0.702034, 35.3274, -0.331578, -14.6324, 0.211126, 17.6946, 147.23, -0.231885, -30.5427, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 1, 1.90239 )
+}
+tracks/5/type = "bezier"
+tracks/5/path = NodePath("../Wand:position:y")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.215251, 1.06177, 4.64456, -0.25, 0, 0.588457, 2.73214, -6.02827, -0.25, 0, 0.282357, 4.82923, 92.4202, -0.0227344, -13.1168, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.4, 1, 2 )
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("../Wand:rotation_degrees")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.2, 0.549438, 4.61855, -0.25, 0, 0.25, 0, -33.42, -0.290849, 17.6829, 0.25, 0, -107.791, -0.25, 0, 0.25, 0, -130.916, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.396533, 0.9, 1.6, 1.9 )
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("../Hat:position:x")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 4.41572, -0.25, 0, 0.25, 0, -0.0603044, -0.2, 0.845124, 0.2, -0.375611, -2.93999, -0.25, 0, 0.25, 0, 0.158802, -0.25, 0, 0.25, 0, 2.81938, -0.25, 0, 0.25, 0, -0.96177, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.6, 0.9, 1, 1.1, 1.2, 1.7, 2 )
+}
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("../Cloud:position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, -1.08476, -0.3, -0.532115, 0.3, 3.81871, 0.0420717, -0.3, -2.91098, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.5, 2 )
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("../DeathStars:emitting")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/10/type = "method"
+tracks/10/path = NodePath("../DeathStars")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "restart"
+} ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("../Pew:emitting")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
 [sub_resource type="Animation" id=23]
 length = 0.001
 tracks/0/type = "value"
@@ -427,6 +571,132 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../Camera2D:offset")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/6/type = "bezier"
+tracks/6/path = NodePath("../Body:scale:x")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"points": PoolRealArray( 0.5, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/7/type = "bezier"
+tracks/7/path = NodePath("../Body:scale:y")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"points": PoolRealArray( 0.5, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/8/type = "bezier"
+tracks/8/path = NodePath("../Body:position:x")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/9/type = "bezier"
+tracks/9/path = NodePath("../Body:position:y")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("../Stars:emitting")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/11/type = "bezier"
+tracks/11/path = NodePath("../Hat:position:x")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/12/type = "bezier"
+tracks/12/path = NodePath("../Hat:position:y")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/13/type = "bezier"
+tracks/13/path = NodePath("../Hat:rotation_degrees")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/14/type = "bezier"
+tracks/14/path = NodePath("../Cloud:position:x")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/15/type = "bezier"
+tracks/15/path = NodePath("../Cloud:position:y")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("../DeathStars:emitting")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -509,6 +779,20 @@ tracks/5/keys = {
 "method": "restart"
 } ]
 }
+tracks/6/type = "method"
+tracks/6/path = NodePath("..")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "ShootSound"
+} ]
+}
 
 [sub_resource type="Curve" id=16]
 min_value = -360.0
@@ -538,6 +822,33 @@ angle_curve = SubResource( 17 )
 scale = 0.03
 scale_curve = SubResource( 19 )
 
+[sub_resource type="Gradient" id=33]
+offsets = PoolRealArray( 0, 0.621118 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=34]
+gradient = SubResource( 33 )
+
+[sub_resource type="ParticlesMaterial" id=35]
+emission_shape = 2
+emission_box_extents = Vector3( 20, 10, 5 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 150.0
+angular_velocity = 400.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 60.0
+angle_curve = SubResource( 17 )
+scale = 0.03
+scale_random = 0.02
+scale_curve = SubResource( 19 )
+color_ramp = SubResource( 34 )
+
+[sub_resource type="CircleShape2D" id=37]
+radius = 29.4279
+
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
@@ -563,7 +874,6 @@ texture = ExtResource( 5 )
 
 [node name="Pew" type="Particles2D" parent="."]
 position = Vector2( 60, 8 )
-emitting = false
 amount = 20
 lifetime = 0.6
 speed_scale = 2.0
@@ -572,15 +882,15 @@ process_material = SubResource( 25 )
 texture = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource( 1 )
+position = Vector2( 2, 9 )
+shape = SubResource( 36 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.8, 0.8 )
 
 [node name="Movement" type="AnimationPlayer" parent="."]
-playback_speed = 3.0
+playback_speed = 5.0
 anims/0Down = SubResource( 14 )
 anims/1Down = SubResource( 12 )
 anims/1Up = SubResource( 9 )
@@ -603,6 +913,7 @@ anims/RESET = SubResource( 22 )
 [node name="Action" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Movement")
 playback_speed = 2.0
+anims/Death = SubResource( 32 )
 anims/RESET = SubResource( 23 )
 anims/Shoot = SubResource( 24 )
 
@@ -615,5 +926,55 @@ speed_scale = 0.75
 process_material = SubResource( 20 )
 texture = ExtResource( 3 )
 
+[node name="DeathStars" type="Particles2D" parent="."]
+position = Vector2( 1, 6 )
+rotation = 0.69115
+amount = 20
+lifetime = 0.75
+one_shot = true
+explosiveness = 0.71
+process_material = SubResource( 35 )
+texture = ExtResource( 3 )
+
 [node name="aim" type="Node2D" parent="."]
 position = Vector2( 70, 8 )
+
+[node name="Shoot1" type="AudioStreamPlayer2D" parent="aim"]
+stream = ExtResource( 15 )
+volume_db = -20.0
+
+[node name="Shoot2" type="AudioStreamPlayer2D" parent="aim"]
+stream = ExtResource( 13 )
+volume_db = -20.0
+
+[node name="Shoot3" type="AudioStreamPlayer2D" parent="aim"]
+stream = ExtResource( 14 )
+volume_db = -20.0
+
+[node name="Shoot4" type="AudioStreamPlayer2D" parent="aim"]
+stream = ExtResource( 16 )
+volume_db = -20.0
+
+[node name="Death" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Death"]
+position = Vector2( 3, 7 )
+shape = SubResource( 37 )
+
+[node name="Hit1" type="AudioStreamPlayer2D" parent="Death"]
+stream = ExtResource( 11 )
+volume_db = -10.0
+
+[node name="Hit2" type="AudioStreamPlayer2D" parent="Death"]
+stream = ExtResource( 12 )
+volume_db = -10.0
+
+[node name="Hit3" type="AudioStreamPlayer2D" parent="Death"]
+stream = ExtResource( 9 )
+volume_db = -10.0
+
+[node name="Hit4" type="AudioStreamPlayer2D" parent="Death"]
+stream = ExtResource( 10 )
+volume_db = -10.0
+
+[connection signal="body_entered" from="Death" to="." method="_on_Death_body_entered"]

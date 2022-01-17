@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://Sprites/ManaRing/ManaUnder.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/BLUESQ.jpg" type="Texture" id=2]
@@ -16,6 +16,19 @@
 [ext_resource path="res://Sprites/ManaRing/ManaProgress.png" type="Texture" id=14]
 [ext_resource path="res://Fonts/Mainlux-Light.otf" type="DynamicFontData" id=15]
 [ext_resource path="res://Scenes/UI.gd" type="Script" id=16]
+[ext_resource path="res://Sprites/UI/DeathClouds.png" type="Texture" id=17]
+[ext_resource path="res://Music/Twin Musicom - Dance Dont Delay.mp3" type="AudioStream" id=18]
+[ext_resource path="res://Music/Twin Musicom - Rhodesia Background.mp3" type="AudioStream" id=19]
+
+[sub_resource type="ProceduralSky" id=11]
+
+[sub_resource type="Environment" id=12]
+background_mode = 4
+background_sky = SubResource( 11 )
+glow_enabled = true
+glow_intensity = 0.27
+glow_blend_mode = 0
+adjustment_enabled = true
 
 [sub_resource type="TileSet" id=2]
 0/name = "SQUARE.jpg 0"
@@ -144,6 +157,8 @@ linear_accel_random = 1.0
 scale = 0.8
 scale_random = 1.0
 
+[sub_resource type="Theme" id=6]
+
 [sub_resource type="DynamicFont" id=4]
 size = 50
 outline_size = 1
@@ -156,7 +171,231 @@ outline_size = 1
 outline_color = Color( 0.796078, 0.67451, 0.211765, 1 )
 font_data = ExtResource( 15 )
 
+[sub_resource type="Animation" id=7]
+resource_name = "DeathScreen"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("DeathClouds:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1277, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("DeathClouds:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1834, -0.25, 0, 0.6, 12.3851, 700, -0.7, 28.2048, 0.9, -67.6392, -517.768, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 1, 2 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../WorldEnvironment:environment:adjustment_contrast")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../WorldEnvironment:environment:adjustment_enabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("DethScreenBGMusic:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1.9, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "PlayerDeath"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("../SpeedLines:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "DeathScreen"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../WorldEnvironment:environment:glow_hdr_threshold")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0, 1.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../BGMusic:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -20.0, -70.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("DeathClouds:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1277, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("DeathClouds:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1834, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../SpeedLines:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../WorldEnvironment:environment:glow_hdr_threshold")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../BGMusic:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -20.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../WorldEnvironment:environment:adjustment_enabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("../WorldEnvironment:environment:adjustment_contrast")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("DethScreenBGMusic:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="DynamicFont" id=9]
+size = 200
+outline_size = 3
+outline_color = Color( 0.792157, 0.666667, 0.2, 1 )
+font_data = ExtResource( 15 )
+
 [node name="World" type="Node2D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 12 )
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+volume_db = -20.0
+autoplay = true
+bus = "Music"
 
 [node name="Icon" type="Sprite" parent="."]
 modulate = Color( 0.784314, 0.862745, 1, 1 )
@@ -201,14 +440,15 @@ speed_scale = 7.0
 process_material = SubResource( 3 )
 texture = ExtResource( 12 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 16 )
 
-[node name="ManaRingProgress" type="TextureProgress" parent="CanvasLayer"]
+[node name="ManaRingProgress" type="TextureProgress" parent="UI"]
 margin_left = 1686.0
 margin_top = 34.0
 margin_right = 1890.0
 margin_bottom = 243.0
+theme = SubResource( 6 )
 value = 100.0
 texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 14 )
@@ -218,12 +458,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ManaRing" type="Sprite" parent="CanvasLayer/ManaRingProgress"]
+[node name="ManaRing" type="Sprite" parent="UI/ManaRingProgress"]
 position = Vector2( 103, 104 )
 scale = Vector2( 0.402672, 0.406439 )
 texture = ExtResource( 13 )
 
-[node name="Mana" type="Label" parent="CanvasLayer/ManaRingProgress"]
+[node name="Mana" type="Label" parent="UI/ManaRingProgress"]
 margin_left = 40.0
 margin_top = 60.0
 margin_right = 194.0
@@ -235,7 +475,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ManaCount" type="Label" parent="CanvasLayer/ManaRingProgress"]
+[node name="ManaCount" type="Label" parent="UI/ManaRingProgress"]
 margin_left = 30.0
 margin_top = 104.0
 margin_right = 184.0
@@ -247,3 +487,43 @@ align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DeathClouds" type="Sprite" parent="UI"]
+position = Vector2( 1277, 1834 )
+scale = Vector2( 1.168, 1.168 )
+texture = ExtResource( 17 )
+offset = Vector2( -201.199, -117.295 )
+
+[node name="DeathClouds2" type="Sprite" parent="UI/DeathClouds"]
+position = Vector2( -20.5479, -238.014 )
+rotation = 3.12618
+texture = ExtResource( 17 )
+offset = Vector2( -201.199, -117.295 )
+
+[node name="DeathClouds3" type="Sprite" parent="UI/DeathClouds"]
+position = Vector2( -695.206, -309.075 )
+rotation = -1.49629
+texture = ExtResource( 17 )
+offset = Vector2( -201.199, -117.295 )
+
+[node name="DeathScreen" type="AnimationPlayer" parent="UI"]
+anims/DeathScreen = SubResource( 7 )
+anims/PlayerDeath = SubResource( 10 )
+anims/RESET = SubResource( 8 )
+
+[node name="Time" type="Label" parent="UI"]
+margin_left = 29.0
+margin_top = 32.0
+margin_right = 267.0
+margin_bottom = 232.0
+custom_colors/font_color = Color( 0.176471, 0.611765, 1, 1 )
+custom_fonts/font = SubResource( 9 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DethScreenBGMusic" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource( 19 )
+volume_db = -20.0
+bus = "Music"

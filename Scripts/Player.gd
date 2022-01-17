@@ -11,13 +11,20 @@ var current_track_num = 4
 var current_track = tracks[current_track_num]
 var moving :bool = false
 
+# Shooting and mana
 onready var aim = $aim
 var spellball = preload("res://Scenes/SpellBall.tscn")
 var can_shoot :bool = true
-
 var mana = 100
+var shootcost = 10
+
+var time = 0
+
+# Dead State
+var dead :bool = false
 
 func _ready():
+	randomize()
 	PlayerAnim.play("Idle")
 	#prevents the particles from emitting on the start 
 	$Pew.emitting = false
@@ -37,7 +44,7 @@ func get_input():
 			movement.play(str(current_track_num)+"Down")
 			current_track_num += 1
 	if Input.is_action_just_pressed("shoot"):
-		if can_shoot and mana >= 5:
+		if can_shoot and mana >= shootcost:
 			Action.stop()
 			Action.play("Shoot")
 
@@ -45,7 +52,7 @@ func shoot():
 	can_shoot = false
 	var projectile = spellball.instance()
 	get_parent().add_child(projectile)
-	mana -= 5
+	mana -= shootcost
 	projectile.global_position = aim.global_position
 		
 func shoot_able():
@@ -53,12 +60,37 @@ func shoot_able():
 	
 func mana_regen():
 	if can_shoot:
-		mana += 0.1
+		mana += 0.05
 	
 func _physics_process(delta):
+	if !dead:
+		
+		# Time
+		time += delta
+		
+		# Mana Regeneration
+		mana = clamp(mana,0.0,100.0)
+		mana_regen()
+		
+		# Movement
+		get_input()
+		move_and_slide(velocity)
+
+# Death
+func _on_Death_body_entered(body):
+	if body.is_in_group("Obstacle"):
+		body.destroy()
+		Death()
+		
+func Death():
+	dead = true
+	Action.play("Death")
+	DeathSound()
 	
-	mana = clamp(mana,0.0,99.9)
-	mana_regen()
+func DeathSound():
+	var soundID = int(rand_range(1,5))
+	get_node("Death/Hit"+str(soundID)).play()
 	
-	get_input()
-	move_and_slide(velocity)
+func ShootSound():
+	var soundID = int(rand_range(1,5))
+	get_node("aim/Shoot"+str(soundID)).play()
