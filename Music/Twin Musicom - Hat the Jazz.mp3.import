@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Twin Musicom - Hat the Jazz.mp3-82ad8500d5d1f40338b2f6fa6a86a853.mp3str"
+
+[deps]
+
+source_file="res://Music/Twin Musicom - Hat the Jazz.mp3"
+dest_files=[ "res://.import/Twin Musicom - Hat the Jazz.mp3-82ad8500d5d1f40338b2f6fa6a86a853.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

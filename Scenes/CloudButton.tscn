@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Sprites/CloudCentered.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/CloudButton.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/CloudButtonExport.gd" type="Script" id=3]
+
+[node name="CloudButton" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 817.0
+margin_top = 405.0
+margin_right = 1073.0
+margin_bottom = 661.0
+rect_scale = Vector2( 2, 2 )
+rect_pivot_offset = Vector2( 128, 128 )
+texture_normal = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="TextureButton"]
+
+[connection signal="mouse_entered" from="TextureButton" to="TextureButton" method="_on_TextureButton_mouse_entered"]
+[connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_TextureButton_pressed"]

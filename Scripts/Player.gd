@@ -4,6 +4,7 @@ var velocity = Vector2(0,0)
 onready var movement = $Movement
 onready var PlayerAnim = $Idle
 onready var Action = $Action
+onready var WorldEnv = get_parent().get_node("WorldEnvironment/WorldEnvironmentAnim")
 
 # All Tracks and The Track you are currently on
 var tracks = ["Red","Orange","Yellow","Green","Blue","Purple","Pink"]
@@ -19,12 +20,14 @@ var mana = 100
 var shootcost = 10
 
 var time = 0
+var boss_time = 30
 
 # Dead State
 var dead :bool = false
 
 func _ready():
 	randomize()
+	WorldEnv.play("Reset")
 	PlayerAnim.play("Idle")
 	#prevents the particles from emitting on the start 
 	$Pew.emitting = false
@@ -87,6 +90,9 @@ func Death():
 	Action.play("Death")
 	DeathSound()
 	
+func DeathCamera():
+	$Camera.play("DeathScreenCamera")
+	
 func DeathSound():
 	var soundID = int(rand_range(1,5))
 	get_node("Death/Hit"+str(soundID)).play()
@@ -94,3 +100,6 @@ func DeathSound():
 func ShootSound():
 	var soundID = int(rand_range(1,5))
 	get_node("aim/Shoot"+str(soundID)).play()
+	
+func BossCamera():
+	$Camera.play("BossCamera")

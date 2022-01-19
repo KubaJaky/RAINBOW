@@ -7,6 +7,8 @@ var obstacle
 var cloud = preload("Obstacle1.tscn")
 var raincloud = preload("Obstacle2.tscn")
 
+export var on :bool = true
+
 func _ready():
 	# Random Cooldown
 	cooldown.wait_time = int(rand_range(1,4))
@@ -29,5 +31,5 @@ func spawn():
 
 
 func _on_CD_timeout():
-	if !player.dead:
+	if !player.dead and on:
 		spawn()

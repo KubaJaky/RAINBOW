@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Twin Musicom - Epic Battle.mp3-594ad9af64679411bbbb22b78e4d96d0.mp3str"
+
+[deps]
+
+source_file="res://Music/Twin Musicom - Epic Battle.mp3"
+dest_files=[ "res://.import/Twin Musicom - Epic Battle.mp3-594ad9af64679411bbbb22b78e4d96d0.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -6,13 +6,15 @@ onready var timeout = $Timeout
 onready var collapse = $Collapse
 onready var player = get_parent().get_parent().get_node("Player")
 onready var sound = $sound
+var destroyed :bool = false
 
 var speed = 25
 var soundID = int(rand_range(1,5))
+var soundID2 = int(rand_range(1,4))
 
 func _ready():
 	$Sprite.visible = true
-	$CollisionShape2D.disabled = false
+	$CollisionShape2D.set_deferred("disabled",false)
 	collapse.emitting = false
 	sound.start()
 	timeout.start()
@@ -27,9 +29,13 @@ func _physics_process(delta):
 	
 # Breakable
 func destroy():
-	destroyAnim.play("Destroy")
-	get_node("Woosh"+str(soundID)).stop()
-	sound.stop()
+	if !destroyed:
+		destroyAnim.play("Destroy")
+		get_node("Woosh"+str(soundID)).stop()
+		get_node("Hit"+str(soundID2)).play()
+		sound.stop()
+		destroyed = true
+		
 func breakdown():
 	queue_free()
 	
@@ -37,6 +43,7 @@ func breakdown():
 func hit():
 	collapse.restart()
 	collapse.emitting = true
+	get_node("Hit"+str(soundID2)).play()
 
 func _on_Timeout_timeout():
 	breakdown()

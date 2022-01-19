@@ -7,6 +7,8 @@ onready var destroy = $Destroy
 onready var boom = $Boom
 onready var poof = $Poof
 
+var damage :int = 5
+
 var broken :bool = false
 
 func _ready():
@@ -36,6 +38,9 @@ func _on_Detect_body_entered(body):
 	elif (body.is_in_group("Unbreakable")):
 		body.hit()
 		queue_free()
+	elif (body.is_in_group("Boss")):
+		body.hurt(damage)
+		boom()
 	
 func boom():
 	broken = true

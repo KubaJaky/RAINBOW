@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Sprites/Laser/Laser-End.png" type="Texture" id=1]
+[ext_resource path="res://Sounds/Boss/Zap.wav" type="AudioStream" id=2]
+[ext_resource path="res://Scenes/Zap.gd" type="Script" id=3]
+
+[sub_resource type="Curve" id=28]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0.0217391, 1.63635 ), 0.0, -423.155, 0, 0, Vector2( 1, 1 ), -337.798, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=29]
+curve = SubResource( 28 )
+
+[sub_resource type="Gradient" id=30]
+offsets = PoolRealArray( 0.36646, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=31]
+gradient = SubResource( 30 )
+
+[sub_resource type="Curve" id=32]
+_data = [ Vector2( 0, 1 ), 0.0, 1.24324, 0, 0, Vector2( 1, 0.55 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=33]
+curve = SubResource( 32 )
+
+[sub_resource type="ParticlesMaterial" id=27]
+emission_shape = 2
+emission_box_extents = Vector3( 1000, 2, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = 248.02
+angular_velocity = 50.0
+angular_velocity_random = 0.35
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 169.4
+angle_random = 0.04
+angle_curve = SubResource( 29 )
+scale = 0.3
+scale_curve = SubResource( 33 )
+color_ramp = SubResource( 31 )
+
+[node name="Zap" type="Particles2D"]
+position = Vector2( -1000, 0 )
+emitting = false
+amount = 20
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.6
+randomness = 0.5
+process_material = SubResource( 27 )
+texture = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="Destroy" type="Timer" parent="."]
+
+[node name="Bzzz" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -495, 0 )
+stream = ExtResource( 2 )
+volume_db = -10.0
+autoplay = true
+
+[connection signal="timeout" from="Destroy" to="." method="_on_Destroy_timeout"]
