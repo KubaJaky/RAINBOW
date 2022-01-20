@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 var velocity = Vector2(0,0)
+onready var player = get_parent().get_node("Player")
 onready var movement = $Movement
 onready var PlayerAnim = $Idle
 onready var Action = $Action
@@ -20,7 +21,7 @@ var mana = 100
 var shootcost = 10
 
 var time = 0
-var boss_time = 30
+var boss_time = 2
 
 # Dead State
 var dead :bool = false

@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Sprites/CloudCentered.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/CloudButton.gd" type="Script" id=2]
 [ext_resource path="res://Scenes/CloudButtonExport.gd" type="Script" id=3]
+[ext_resource path="res://Sounds/UI/BackButton.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sounds/UI/Button.wav" type="AudioStream" id=5]
 
 [node name="CloudButton" type="Control"]
 anchor_right = 1.0
@@ -26,6 +28,14 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="TextureButton"]
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="TextureButton"]
+stream = ExtResource( 5 )
+volume_db = -5.0
+
+[node name="BackButton" type="AudioStreamPlayer" parent="TextureButton"]
+stream = ExtResource( 4 )
+volume_db = -5.0
 
 [connection signal="mouse_entered" from="TextureButton" to="TextureButton" method="_on_TextureButton_mouse_entered"]
 [connection signal="pressed" from="TextureButton" to="TextureButton" method="_on_TextureButton_pressed"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/ShieldBreak.wav-8fd751bb1c67314aa8c600d5b5aa232b.sample"
+
+[deps]
+
+source_file="res://Sounds/Boss/ShieldBreak.wav"
+dest_files=[ "res://.import/ShieldBreak.wav-8fd751bb1c67314aa8c600d5b5aa232b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -270,7 +270,7 @@ tracks/11/keys = {
 }
 
 [node name="Laser" type="KinematicBody2D" groups=["Obstacle"]]
-position = Vector2( 838, 0 )
+position = Vector2( -227, 0 )
 script = ExtResource( 3 )
 
 [node name="End" type="Sprite" parent="."]

@@ -150,6 +150,7 @@ tracks/2/keys = {
 }
 
 [node name="Cloud" type="KinematicBody2D" groups=["Obstacle", "Unbreakable"]]
+collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

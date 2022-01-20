@@ -3,6 +3,7 @@ extends KinematicBody2D
 var velocity = Vector2()
 var colorpool = [Color("ffffff"),Color("32faff"),Color("fb7eff"),Color("b87eff")]
 
+onready var player = get_parent().get_node("Player")
 onready var destroy = $Destroy
 onready var boom = $Boom
 onready var poof = $Poof
@@ -11,7 +12,10 @@ var damage :int = 5
 
 var broken :bool = false
 
+var track :int
+
 func _ready():
+	track = player.current_track_num
 	$AnimatedSprite.visible = true
 	boom.emitting = false
 	# Setting a random color
@@ -39,7 +43,7 @@ func _on_Detect_body_entered(body):
 		body.hit()
 		queue_free()
 	elif (body.is_in_group("Boss")):
-		body.hurt(damage)
+		body.hurt(damage,track)
 		boom()
 	
 func boom():

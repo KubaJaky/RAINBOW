@@ -2,10 +2,13 @@ extends Node2D
 
 onready var cooldown = $CD
 onready var player = get_parent().get_node("Player")
+onready var UI = get_parent().get_node("UI")
 
 var obstacle
 var cloud = preload("Obstacle1.tscn")
 var raincloud = preload("Obstacle2.tscn")
+var laser = preload("Laser.tscn") 
+var laser_on :bool = true
 
 export var on :bool = true
 
@@ -21,12 +24,20 @@ func spawn():
 		var spawned = cloud.instance()
 		self.add_child(spawned)
 	elif obstacle > 3 and obstacle < 5:
-		var spawned = raincloud.instance()
-		self.add_child(spawned)
+		if !UI.boss_on:
+			var spawned = raincloud.instance()
+			self.add_child(spawned)
+		elif UI.boss_on:
+			pass
 	cooldown.start()
 	
-	
-	
+func laser():
+	if laser_on:
+		on = false
+		var spawned = laser.instance()
+		self.add_child(spawned)
+		on = true
+		cooldown.start()
 	
 
 

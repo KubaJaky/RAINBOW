@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://Sprites/ManaRing/ManaUnder.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/BLUESQ.jpg" type="Texture" id=2]
@@ -35,7 +35,6 @@
 [ext_resource path="res://Sounds/Boss/NameType2.wav" type="AudioStream" id=33]
 [ext_resource path="res://Music/Twin Musicom - Epic Battle.mp3" type="AudioStream" id=34]
 [ext_resource path="res://Sounds/Boss/Notice.wav" type="AudioStream" id=35]
-[ext_resource path="res://Scenes/Laser.tscn" type="PackedScene" id=36]
 [ext_resource path="res://Scenes/Save.gd" type="Script" id=37]
 [ext_resource path="res://Music/Twin Musicom - Hat the Jazz.mp3" type="AudioStream" id=38]
 
@@ -701,10 +700,10 @@ tracks/12/loop_wrap = true
 tracks/12/imported = false
 tracks/12/enabled = true
 tracks/12/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true, false, true ]
 }
 tracks/13/type = "value"
 tracks/13/path = NodePath("Spawner1:on")
@@ -713,10 +712,10 @@ tracks/13/loop_wrap = true
 tracks/13/imported = false
 tracks/13/enabled = true
 tracks/13/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true, false, true ]
 }
 tracks/14/type = "value"
 tracks/14/path = NodePath("Spawner3:on")
@@ -725,10 +724,10 @@ tracks/14/loop_wrap = true
 tracks/14/imported = false
 tracks/14/enabled = true
 tracks/14/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true, false, true ]
 }
 tracks/15/type = "value"
 tracks/15/path = NodePath("Spawner4:on")
@@ -737,10 +736,10 @@ tracks/15/loop_wrap = true
 tracks/15/imported = false
 tracks/15/enabled = true
 tracks/15/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true, false, true ]
 }
 tracks/16/type = "value"
 tracks/16/path = NodePath("Spawner5:on")
@@ -749,10 +748,10 @@ tracks/16/loop_wrap = true
 tracks/16/imported = false
 tracks/16/enabled = true
 tracks/16/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true, false, true ]
 }
 tracks/17/type = "value"
 tracks/17/path = NodePath("Spawner6:on")
@@ -761,10 +760,10 @@ tracks/17/loop_wrap = true
 tracks/17/imported = false
 tracks/17/enabled = true
 tracks/17/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true, false, true ]
 }
 tracks/18/type = "value"
 tracks/18/path = NodePath("Spawner0:on")
@@ -773,10 +772,10 @@ tracks/18/loop_wrap = true
 tracks/18/imported = false
 tracks/18/enabled = true
 tracks/18/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1, 7.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ true, false, true ]
 }
 tracks/19/type = "value"
 tracks/19/path = NodePath("Typing:playing")
@@ -813,6 +812,20 @@ tracks/21/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
+}
+tracks/22/type = "method"
+tracks/22/path = NodePath("Boss")
+tracks/22/interp = 1
+tracks/22/loop_wrap = true
+tracks/22/imported = false
+tracks/22/enabled = true
+tracks/22/keys = {
+"times": PoolRealArray( 6.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "Action_Reset"
+} ]
 }
 
 [sub_resource type="DynamicFont" id=13]
@@ -870,36 +883,24 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 1, 2 )
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("DethScreenBGMusic:playing")
+tracks/2/path = NodePath(".:offset")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1.9, 2 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath(".:offset")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 1.8, 1.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, -300 ) ]
 }
-tracks/4/type = "method"
-tracks/4/path = NodePath("../Player")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
+tracks/3/type = "method"
+tracks/3/path = NodePath("../Player")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 1.1 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -907,25 +908,25 @@ tracks/4/keys = {
 "method": "DeathCamera"
 } ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("DeathScreen2:offset")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
+tracks/4/type = "value"
+tracks/4/path = NodePath("DeathScreen2:offset")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 0, 1, 1.1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, 1775 ) ]
 }
-tracks/6/type = "method"
-tracks/6/path = NodePath("DeathScreen2")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
+tracks/5/type = "method"
+tracks/5/path = NodePath("DeathScreen2")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 1.7 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -933,29 +934,65 @@ tracks/6/keys = {
 "method": "start_counting"
 } ]
 }
-tracks/7/type = "value"
-tracks/7/path = NodePath("../WorldEnvironment:environment:glow_hdr_threshold")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
+tracks/6/type = "value"
+tracks/6/path = NodePath("../WorldEnvironment:environment:glow_hdr_threshold")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
 "times": PoolRealArray( 0.5, 1.5 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.0, 0.8 ]
 }
+tracks/7/type = "value"
+tracks/7/path = NodePath("BossBarHolder:layer")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, -2 ]
+}
 tracks/8/type = "value"
-tracks/8/path = NodePath("BossBarHolder:layer")
+tracks/8/path = NodePath("../BGMusic:playing")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 1.4, 1.5 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("../BossBGMusic:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("DeathScoreBGMusic:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 1.9, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 1, -2 ]
+"values": [ false, true ]
 }
 
 [sub_resource type="Animation" id=10]
@@ -1006,6 +1043,18 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
+"times": PoolRealArray( 0, 1.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -20.0, -70.0 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../BossBGMusic:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 0, 1.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
@@ -1095,7 +1144,7 @@ tracks/6/keys = {
 "values": [ 1.0 ]
 }
 tracks/7/type = "value"
-tracks/7/path = NodePath("DethScreenBGMusic:playing")
+tracks/7/path = NodePath(".:offset")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/imported = false
@@ -1104,10 +1153,10 @@ tracks/7/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Vector2( 0, 0 ) ]
 }
 tracks/8/type = "value"
-tracks/8/path = NodePath(".:offset")
+tracks/8/path = NodePath("DeathScreen2:offset")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/imported = false
@@ -1119,7 +1168,7 @@ tracks/8/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 tracks/9/type = "value"
-tracks/9/path = NodePath("DeathScreen2:offset")
+tracks/9/path = NodePath("../WorldEnvironment:environment:adjustment_brightness")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/imported = false
@@ -1128,10 +1177,10 @@ tracks/9/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ) ]
+"values": [ 1.0 ]
 }
 tracks/10/type = "value"
-tracks/10/path = NodePath("../WorldEnvironment:environment:adjustment_brightness")
+tracks/10/path = NodePath("BossBarHolder:layer")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/imported = false
@@ -1140,10 +1189,10 @@ tracks/10/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1.0 ]
+"values": [ 1 ]
 }
 tracks/11/type = "value"
-tracks/11/path = NodePath("BossBarHolder:layer")
+tracks/11/path = NodePath("../BossBGMusic:volume_db")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/imported = false
@@ -1152,7 +1201,43 @@ tracks/11/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1 ]
+"values": [ -20.0 ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("../BGMusic:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("../BossBGMusic:playing")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("DeathScoreBGMusic:playing")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
 }
 
 [sub_resource type="DynamicFont" id=14]
@@ -1218,60 +1303,36 @@ tracks/1/keys = {
 "values": [ false, true ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../DethScreenBGMusic:volume_db")
+tracks/2/path = NodePath("NewHighScore/Confetti1:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ -20.0, -50.0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("../DethScreenBGMusic:stream_paused")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("NewHighScore/Confetti1:emitting")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0.7, 0.8, 3.075, 3.175 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false, true ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("NewHighScore/Confetti2:emitting")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
+tracks/3/type = "value"
+tracks/3/path = NodePath("NewHighScore/Confetti2:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 1.1, 1.2, 4.65, 4.75 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ false, true, false, true ]
 }
-tracks/6/type = "method"
-tracks/6/path = NodePath("NewHighScore/Confetti1")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
+tracks/4/type = "method"
+tracks/4/path = NodePath("NewHighScore/Confetti1")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 0.5, 3.075 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
@@ -1282,13 +1343,13 @@ tracks/6/keys = {
 "method": "restart"
 } ]
 }
-tracks/7/type = "method"
-tracks/7/path = NodePath("NewHighScore/Confetti2")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/keys = {
+tracks/5/type = "method"
+tracks/5/path = NodePath("NewHighScore/Confetti2")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
 "times": PoolRealArray( 1, 4.65 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
@@ -1299,17 +1360,29 @@ tracks/7/keys = {
 "method": "restart"
 } ]
 }
-tracks/8/type = "value"
-tracks/8/path = NodePath("../HighScoreBGMusic:playing")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/keys = {
+tracks/6/type = "value"
+tracks/6/path = NodePath("../HighScoreBGMusic:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
 "times": PoolRealArray( 0.6, 0.7 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("../DeathScoreBGMusic:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=30]
@@ -1339,7 +1412,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../DethScreenBGMusic:volume_db")
+tracks/2/path = NodePath("NewHighScore/Confetti1:emitting")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -1348,10 +1421,10 @@ tracks/2/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ -20.0 ]
+"values": [ false ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("../DethScreenBGMusic:stream_paused")
+tracks/3/path = NodePath("NewHighScore/Confetti2:emitting")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -1360,10 +1433,10 @@ tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ true ]
+"values": [ false ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("NewHighScore/Confetti1:emitting")
+tracks/4/path = NodePath("../HighScoreBGMusic:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -1375,24 +1448,12 @@ tracks/4/keys = {
 "values": [ false ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("NewHighScore/Confetti2:emitting")
+tracks/5/path = NodePath("../DeathScoreBGMusic:playing")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ false ]
-}
-tracks/6/type = "value"
-tracks/6/path = NodePath("../HighScoreBGMusic:playing")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -1652,10 +1713,9 @@ anims/DeathScreen = SubResource( 7 )
 anims/PlayerDeath = SubResource( 10 )
 anims/RESET = SubResource( 8 )
 
-[node name="DethScreenBGMusic" type="AudioStreamPlayer" parent="UI"]
+[node name="DeathScoreBGMusic" type="AudioStreamPlayer" parent="UI"]
 stream = ExtResource( 19 )
 volume_db = -20.0
-stream_paused = true
 bus = "Music"
 
 [node name="HighScoreBGMusic" type="AudioStreamPlayer" parent="UI"]
@@ -1692,6 +1752,7 @@ margin_right = 947.0
 margin_bottom = -964.0
 rect_scale = Vector2( 0.8, 0.8 )
 mouse_filter = 2
+back = true
 
 [node name="Label2" type="Label" parent="UI/DeathScreen2/Menu"]
 margin_left = 848.75
@@ -1789,5 +1850,3 @@ lifetime = 2.0
 one_shot = true
 explosiveness = 0.5
 process_material = SubResource( 28 )
-
-[node name="Laser" parent="." instance=ExtResource( 36 )]
