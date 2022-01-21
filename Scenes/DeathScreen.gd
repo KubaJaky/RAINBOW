@@ -13,13 +13,18 @@ func _physics_process(delta):
 	if Iscounting:
 		count()
 		
+func new_boss_progress():
+	$Panel/Progressed.restart()
+	$Panel/Progressed/Trrr.play()
+	$Panel/Progressed.emitting = true
+		
 func start_counting():
 	Iscounting = true
 
 func count():
 	if counting == int(player.time):
-		counting = int(player.time)
 		Iscounting = false
+		save.Boss_Progress()
 		save.Time()
 	if counting < int(player.time):
 		counting += 1

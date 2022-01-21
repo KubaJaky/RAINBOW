@@ -915,7 +915,7 @@ initial_velocity = -100.0
 angular_velocity = 400.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-linear_accel = 60.0
+linear_accel = 100.0
 angle_curve = SubResource( 17 )
 scale = 0.03
 scale_curve = SubResource( 19 )
@@ -1026,6 +1026,7 @@ rotation = 0.69115
 amount = 10
 lifetime = 0.75
 speed_scale = 0.75
+local_coords = false
 process_material = SubResource( 20 )
 texture = ExtResource( 3 )
 

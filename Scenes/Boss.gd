@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 onready var hurtsound = $Hurt
 onready var gesture = $BossGestures
+onready var save = get_parent().get_node("UI/Save")
 
 var Titles = ["Great", "Almighty", "Grand", 
 "Big", "Invincible", "Fearless", "Sensual", 
@@ -34,7 +35,9 @@ var colorId = int(rand_range(0,14))
 
 # Basic Boss States
 var BossName :String
+var max_hp :int = 100
 var hp :int = 100
+var dead :bool = false
 var on :bool = true
 export var unhitable :bool = false
 
@@ -42,7 +45,7 @@ export var unhitable :bool = false
 export var shielded :bool = false
 var shield_track :int
 var shield_hp :int
-var max_shield_hp :int = 10
+var max_shield_hp :int = 20
 onready var shield = $Shield
 onready var shieldhit = $Shield/ShieldHit
 onready var shieldanim = $ShieldAnimation
@@ -52,6 +55,7 @@ var double_laser_track1 :int
 var double_laser_track2 :int
 var mega_laser_track :int
 onready var megalasertimer = $MegaLaser
+var mega_laser :bool = false
 
 # Actions, Attack etc.
 onready var actionCD = $Action
@@ -60,10 +64,19 @@ var actionID :int
 onready var player = get_parent().get_node("Player")
 
 func _ready():
+	reset()
+	
+func reset():
 	BossName = Titles[nameId1] + " " + Names[nameId2] + " " + Surnames[nameId3]
+	nameId1 = int(rand_range(0,24))
+	nameId2 = int(rand_range(0,34))
+	nameId3 = int(rand_range(0,39))
+	colorId = int(rand_range(0,14))
 	$Horns.modulate = Colors[colorId]
 	$Wand.modulate = Colors[colorId]
+	gesture.playback_speed = 1
 	gesture.play("Idle")
+	hp = max_hp
 	shield_hp = max_shield_hp
 	
 func Idle():
@@ -82,10 +95,22 @@ func hurt(var dmg, var track):
 		
 func _physics_process(delta):
 	if on:
+		if hp <= 0:
+			die()
+		
 		if shielded and shield_hp <= 0:
 			shield_break()
 		if player.dead:
 			off()
+		
+func die():
+	if !dead:
+		dead = true
+		off()
+		gesture.playback_speed = 0.25
+		gesture.play("Death")
+		$ResetBoss.start()
+	
 		
 func shield_on():
 	shield_track = int(rand_range(0,7))
@@ -117,6 +142,7 @@ func reset_double_laser2():
 	double_laser_track2 = int(rand_range(0,7))
 	
 func mega_laser():
+	mega_laser = true
 	gesture.play("Action")
 	if player.current_track_num == 0:
 		mega_laser_track = player.current_track_num + 1
@@ -128,6 +154,7 @@ func mega_laser():
 		
 	get_parent().get_node("Spawner"+str(mega_laser_track)).laser_on = false
 	megalasertimer.start()
+	mega_laser = false
 	
 	for n in 7:
 		get_parent().get_node("Spawner" + str(n)).laser()
@@ -139,20 +166,20 @@ func Action_Reset():
 
 func _on_Action_timeout():
 	if on:
-		actionID = int(rand_range(0,4))
+		actionID = int(rand_range(0,10))
 		# Single Laser
-		if actionID == 0:
+		if actionID > 0 and actionID <= 3:
 			single_laser()
 		# Shield
-		elif actionID == 1 and !shielded:
+		elif actionID > 3 and actionID <= 7 and !shielded:
 			shield_on()
-		elif actionID == 1 and shielded:
+		elif actionID > 3 and actionID <= 7 and shielded:
 			pass
 		# Double Laser
-		elif actionID == 2:
+		elif actionID > 7 and actionID <= 9:
 			double_laser()
 		# Mega Laser
-		elif actionID == 3:
+		elif actionID == 10:
 			mega_laser()
 		Action_Reset()
 		
@@ -160,6 +187,20 @@ func off():
 	actionCD.stop()
 	on = false
 	
+func on():
+	on = true
+	
 
 func _on_MegaLaser_timeout():
 	get_parent().get_node("Spawner"+str(mega_laser_track)).laser_on = true
+
+
+func _on_ResetBoss_timeout():
+	max_hp = max_hp*1.5
+	save.add_kill()
+	player.boss_progress += 1
+	gesture.play_backwards("Action")
+	global_position.y = 1408.3
+	reset()
+	dead = false
+	

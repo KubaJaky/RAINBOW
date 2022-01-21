@@ -21,7 +21,9 @@ var mana = 100
 var shootcost = 10
 
 var time = 0
-var boss_time = 2
+var boss_time = 65
+var boss_space = 85
+var boss_progress :int = 0
 
 # Dead State
 var dead :bool = false
@@ -64,7 +66,7 @@ func shoot_able():
 	
 func mana_regen():
 	if can_shoot:
-		mana += 0.05
+		mana += 0.07
 	
 func _physics_process(delta):
 	if !dead:
@@ -104,3 +106,7 @@ func ShootSound():
 	
 func BossCamera():
 	$Camera.play("BossCamera")
+	
+func BossReset():
+	boss_time = int(time) + int(boss_space)
+	$Camera.play_backwards("BossCamera")

@@ -5,6 +5,7 @@ onready var destroyAnim = $Destroy
 onready var timeout = $Timeout
 onready var collapse = $Collapse
 onready var player = get_parent().get_parent().get_node("Player")
+onready var boss = get_parent().get_parent().get_node("Boss")
 onready var sound = $sound
 var destroyed :bool = false
 
@@ -22,7 +23,7 @@ func _ready():
 func _physics_process(delta):
 	if !player.dead:
 		velocity.x -= speed
-	elif player.dead:
+	elif player.dead or boss.mega_laser:
 		destroy()
 		
 	move_and_slide(velocity)

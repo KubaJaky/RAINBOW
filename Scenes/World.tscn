@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://Sprites/ManaRing/ManaUnder.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/BLUESQ.jpg" type="Texture" id=2]
@@ -35,6 +35,7 @@
 [ext_resource path="res://Sounds/Boss/NameType2.wav" type="AudioStream" id=33]
 [ext_resource path="res://Music/Twin Musicom - Epic Battle.mp3" type="AudioStream" id=34]
 [ext_resource path="res://Sounds/Boss/Notice.wav" type="AudioStream" id=35]
+[ext_resource path="res://Sounds/UI/Progressed.wav" type="AudioStream" id=36]
 [ext_resource path="res://Scenes/Save.gd" type="Script" id=37]
 [ext_resource path="res://Music/Twin Musicom - Hat the Jazz.mp3" type="AudioStream" id=38]
 
@@ -278,6 +279,180 @@ linear_accel = 100.0
 linear_accel_random = 1.0
 scale = 0.8
 scale_random = 1.0
+
+[sub_resource type="Animation" id=32]
+resource_name = "EndFight"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/BossBarHolder/TextureProgress:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BossBGMusic:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("BossBGMusic:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -20.0, -70.0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Spawner0:on")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Spawner1:on")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Spawner2:on")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Spawner3:on")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.1, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Spawner4:on")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.1, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Spawner5:on")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.1, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Spawner6:on")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.1, 8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/10/type = "method"
+tracks/10/path = NodePath("UI")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 7.5 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "NewBoss"
+} ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("UI/BossBarHolder/BossProgress:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 7.5, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("BGMusic:stream_paused")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 7, 7.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("BGMusic:volume_db")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 7.1, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -70.0, -20.0 ]
+}
 
 [sub_resource type="Animation" id=22]
 length = 0.001
@@ -548,6 +723,30 @@ tracks/22/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ false ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("BossBGMusic:volume_db")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -20.0 ]
+}
+tracks/24/type = "value"
+tracks/24/path = NodePath("BGMusic:playing")
+tracks/24/interp = 1
+tracks/24/loop_wrap = true
+tracks/24/imported = false
+tracks/24/enabled = true
+tracks/24/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=21]
@@ -820,12 +1019,27 @@ tracks/22/loop_wrap = true
 tracks/22/imported = false
 tracks/22/enabled = true
 tracks/22/keys = {
-"times": PoolRealArray( 6.5 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 6.1, 6.5 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "on"
+}, {
 "args": [  ],
 "method": "Action_Reset"
 } ]
+}
+tracks/23/type = "value"
+tracks/23/path = NodePath("BossBGMusic:volume_db")
+tracks/23/interp = 1
+tracks/23/loop_wrap = true
+tracks/23/imported = false
+tracks/23/enabled = true
+tracks/23/keys = {
+"times": PoolRealArray( 0, 4.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -70.0, -20.0 ]
 }
 
 [sub_resource type="DynamicFont" id=13]
@@ -1275,6 +1489,34 @@ size = 90
 outline_size = 1
 font_data = ExtResource( 15 )
 
+[sub_resource type="DynamicFont" id=33]
+size = 80
+outline_size = 2
+font_data = ExtResource( 15 )
+
+[sub_resource type="Curve" id=25]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.0715909 ), -3.53132, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=26]
+curve = SubResource( 25 )
+
+[sub_resource type="ParticlesMaterial" id=34]
+emission_shape = 2
+emission_box_extents = Vector3( 100, 20, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 98, 0 )
+initial_velocity = -232.0
+angular_velocity = -301.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 15.0
+scale_random = 0.5
+scale_curve = SubResource( 26 )
+hue_variation = 0.07
+hue_variation_random = 1.0
+
 [sub_resource type="Animation" id=24]
 resource_name = "HighScore"
 length = 5.0
@@ -1460,12 +1702,6 @@ tracks/5/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="Curve" id=25]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.0715909 ), -3.53132, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=26]
-curve = SubResource( 25 )
-
 [sub_resource type="ParticlesMaterial" id=27]
 emission_shape = 2
 emission_box_extents = Vector3( 20, 20, 1 )
@@ -1568,6 +1804,7 @@ visible = false
 position = Vector2( 743, 1403 )
 
 [node name="Boss_Animation" type="AnimationPlayer" parent="."]
+anims/EndFight = SubResource( 32 )
 anims/RESET = SubResource( 22 )
 anims/StartFight = SubResource( 21 )
 
@@ -1753,6 +1990,7 @@ margin_bottom = -964.0
 rect_scale = Vector2( 0.8, 0.8 )
 mouse_filter = 2
 back = true
+quit = true
 
 [node name="Label2" type="Label" parent="UI/DeathScreen2/Menu"]
 margin_left = 848.75
@@ -1780,7 +2018,7 @@ margin_top = 22.0
 margin_right = 387.0
 margin_bottom = 173.0
 custom_fonts/font = SubResource( 16 )
-text = "Time: 9999"
+text = "Time: 0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1795,7 +2033,7 @@ margin_top = 214.0
 margin_right = 802.0
 margin_bottom = 365.0
 custom_fonts/font = SubResource( 17 )
-text = "Best Time: 9999"
+text = "Best Time: 0"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1821,11 +2059,37 @@ margin_top = 465.0
 margin_right = 802.0
 margin_bottom = 616.0
 custom_fonts/font = SubResource( 31 )
-text = "Boss Kills: 9999"
+text = "Boss Kills: 0"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BossProgressed" type="Label" parent="UI/DeathScreen2/Panel"]
+margin_left = 34.0
+margin_top = 576.0
+margin_right = 802.0
+margin_bottom = 727.0
+custom_fonts/font = SubResource( 33 )
+text = "Boss Progress: 0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Progressed" type="Particles2D" parent="UI/DeathScreen2/Panel"]
+position = Vector2( 406, 616 )
+rotation = 0.261799
+emitting = false
+amount = 20
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource( 34 )
+
+[node name="Trrr" type="AudioStreamPlayer" parent="UI/DeathScreen2/Panel/Progressed"]
+stream = ExtResource( 36 )
+volume_db = -10.0
 
 [node name="NewHighScore" type="AnimationPlayer" parent="UI/DeathScreen2"]
 anims/HighScore = SubResource( 24 )
