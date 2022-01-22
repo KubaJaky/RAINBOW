@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=72 format=2]
 
 [ext_resource path="res://Sprites/ManaRing/ManaUnder.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/BLUESQ.jpg" type="Texture" id=2]
@@ -38,6 +38,7 @@
 [ext_resource path="res://Sounds/UI/Progressed.wav" type="AudioStream" id=36]
 [ext_resource path="res://Scenes/Save.gd" type="Script" id=37]
 [ext_resource path="res://Music/Twin Musicom - Hat the Jazz.mp3" type="AudioStream" id=38]
+[ext_resource path="res://Scenes/Holder.tscn" type="PackedScene" id=39]
 
 [sub_resource type="ProceduralSky" id=20]
 
@@ -1761,6 +1762,7 @@ position = Vector2( 3, 4425 )
 scale = Vector2( 50, 50 )
 texture = ExtResource( 22 )
 script = ExtResource( 23 )
+speed = 0.01
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 2 )
@@ -1811,10 +1813,12 @@ anims/StartFight = SubResource( 21 )
 [node name="Typing" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 33 )
 volume_db = -10.0
+bus = "SFX"
 
 [node name="Notice" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 35 )
 volume_db = -10.0
+bus = "SFX"
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 16 )
@@ -1970,9 +1974,9 @@ mouse_filter = 2
 ScenePath = "res://Scenes/World.tscn"
 
 [node name="Label" type="Label" parent="UI/DeathScreen2/Retry"]
-margin_left = 855.0
+margin_left = 887.0
 margin_top = 494.0
-margin_right = 1045.0
+margin_right = 1077.0
 margin_bottom = 570.0
 custom_colors/font_color = Color( 0.188235, 0.615686, 1, 1 )
 custom_fonts/font = SubResource( 14 )
@@ -1989,13 +1993,12 @@ margin_right = 947.0
 margin_bottom = -964.0
 rect_scale = Vector2( 0.8, 0.8 )
 mouse_filter = 2
-back = true
-quit = true
+ScenePath = "res://Scenes/Menu.tscn"
 
 [node name="Label2" type="Label" parent="UI/DeathScreen2/Menu"]
-margin_left = 848.75
+margin_left = 881.25
 margin_top = 493.75
-margin_right = 1048.75
+margin_right = 1081.25
 margin_bottom = 569.75
 custom_colors/font_color = Color( 0.188235, 0.615686, 1, 1 )
 custom_fonts/font = SubResource( 14 )
@@ -2026,6 +2029,7 @@ __meta__ = {
 [node name="Count" type="AudioStreamPlayer" parent="UI/DeathScreen2/Panel/Time"]
 stream = ExtResource( 24 )
 volume_db = -15.0
+bus = "SFX"
 
 [node name="BestTime" type="Label" parent="UI/DeathScreen2/Panel"]
 margin_left = 34.0
@@ -2090,6 +2094,7 @@ process_material = SubResource( 34 )
 [node name="Trrr" type="AudioStreamPlayer" parent="UI/DeathScreen2/Panel/Progressed"]
 stream = ExtResource( 36 )
 volume_db = -10.0
+bus = "SFX"
 
 [node name="NewHighScore" type="AnimationPlayer" parent="UI/DeathScreen2"]
 anims/HighScore = SubResource( 24 )
@@ -2114,3 +2119,6 @@ lifetime = 2.0
 one_shot = true
 explosiveness = 0.5
 process_material = SubResource( 28 )
+
+[node name="Holder" parent="." instance=ExtResource( 39 )]
+game = true

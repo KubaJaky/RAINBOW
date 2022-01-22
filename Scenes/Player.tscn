@@ -6,7 +6,7 @@
 [ext_resource path="res://Sprites/Character/Wand.png" type="Texture" id=4]
 [ext_resource path="res://Sprites/Character/Cloud.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Character/Eyes.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/Character/Hat.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Character/Hat0.png" type="Texture" id=7]
 [ext_resource path="res://Sprites/Triangle.png" type="Texture" id=8]
 [ext_resource path="res://Sounds/Hit/Hit3.wav" type="AudioStream" id=9]
 [ext_resource path="res://Sounds/Hit/Hit4.wav" type="AudioStream" id=10]
@@ -1046,18 +1046,22 @@ position = Vector2( 70, 8 )
 [node name="Shoot1" type="AudioStreamPlayer2D" parent="aim"]
 stream = ExtResource( 15 )
 volume_db = -20.0
+bus = "SFX"
 
 [node name="Shoot2" type="AudioStreamPlayer2D" parent="aim"]
 stream = ExtResource( 13 )
 volume_db = -20.0
+bus = "SFX"
 
 [node name="Shoot3" type="AudioStreamPlayer2D" parent="aim"]
 stream = ExtResource( 14 )
 volume_db = -20.0
+bus = "SFX"
 
 [node name="Shoot4" type="AudioStreamPlayer2D" parent="aim"]
 stream = ExtResource( 16 )
 volume_db = -20.0
+bus = "SFX"
 
 [node name="Death" type="Area2D" parent="."]
 

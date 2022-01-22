@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var velocity = Vector2()
-var colorpool = [Color("ffffff"),Color("32faff"),Color("fb7eff"),Color("b87eff")]
+var colorpool = [Color("ff1f1f"),Color("ff981f"),Color("ffe11f"),Color("50ff1f"), Color("1fcbff"), Color("9a1fff"), Color("ff1fb7")]
 
 onready var player = get_parent().get_node("Player")
 onready var destroy = $Destroy
@@ -18,9 +18,8 @@ func _ready():
 	track = player.current_track_num
 	$AnimatedSprite.visible = true
 	boom.emitting = false
-	# Setting a random color
-	var color = int(rand_range(0,4))
-	modulate = colorpool[color]
+	# Setting a color based on the track you're on
+	modulate = colorpool[track]
 	destroy.start()
 
 func _physics_process(delta):

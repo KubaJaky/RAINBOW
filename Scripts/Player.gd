@@ -5,7 +5,7 @@ onready var player = get_parent().get_node("Player")
 onready var movement = $Movement
 onready var PlayerAnim = $Idle
 onready var Action = $Action
-onready var WorldEnv = get_parent().get_node("WorldEnvironment/WorldEnvironmentAnim")
+var WorldEnv 
 
 # All Tracks and The Track you are currently on
 var tracks = ["Red","Orange","Yellow","Green","Blue","Purple","Pink"]
@@ -28,12 +28,16 @@ var boss_progress :int = 0
 # Dead State
 var dead :bool = false
 
+var hatID :int = 0
+
 func _ready():
 	randomize()
+	WorldEnv = get_parent().get_node("WorldEnvironment/WorldEnvironmentAnim")
 	WorldEnv.play("Reset")
 	PlayerAnim.play("Idle")
 	#prevents the particles from emitting on the start 
 	$Pew.emitting = false
+
 
 func get_input():
 	# Movement
@@ -81,6 +85,7 @@ func _physics_process(delta):
 		# Movement
 		get_input()
 		move_and_slide(velocity)
+		
 
 # Death
 func _on_Death_body_entered(body):
@@ -110,3 +115,6 @@ func BossCamera():
 func BossReset():
 	boss_time = int(time) + int(boss_space)
 	$Camera.play_backwards("BossCamera")
+	
+func hatUpdate():
+	$Hat.texture = load("res://Sprites/Character/Hat" + str(hatID) + (".png"))
